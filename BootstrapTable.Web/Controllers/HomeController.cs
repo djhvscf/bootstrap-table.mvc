@@ -1,6 +1,7 @@
 ﻿using BootstrapTable.Web.Models;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -26,16 +27,16 @@ namespace BootstrapTable.Web.Controllers
         {
             return new List<Person>
             {
-                new Person { Id = 1, FirstName = "Odysseus", LastName = "Kirkland", Email = "fermentum@Proinvelnisl.net", BirthDate = DateTime.Parse("25/06/2000"), Location = "Eritrea", },
-                new Person { Id = 2, FirstName = "Jocelyn", LastName = "Mccall", Email = "Nullam.lobortis@Fuscefermentum.ca", BirthDate = DateTime.Parse("05/09/1949"), Location = "Bolivia", },
-                new Person { Id = 3, FirstName = "Lael", LastName = "Trujillo", Email = "enim.Suspendisse.aliquet@nec.com", BirthDate = DateTime.Parse("04/09/1991"), Location = "Sri Lanka", },
-                new Person { Id = 4, FirstName = "Chelsea", LastName = "Mcgee", Email = "magna.et@dolornonummyac.co.uk", BirthDate = DateTime.Parse("21/07/1960"), Location = "Hungary", },
-                new Person { Id = 5, FirstName = "Connor", LastName = "Pope", Email = "In.tincidunt@eu.com", BirthDate = DateTime.Parse("23/07/1987"), Location = "Albania", },
-                new Person { Id = 6, FirstName = "Dustin", LastName = "Arnold", Email = "ante.Nunc@Pellentesquetincidunttempus.com", BirthDate = DateTime.Parse("15/04/1946"), Location = "Lithuania", },
-                new Person { Id = 7, FirstName = "Tatum", LastName = "Dale", Email = "turpis.egestas.Aliquam@atauctor.edu", BirthDate = DateTime.Parse("15/05/1981"), Location = "South Africa", },
-                new Person { Id = 8, FirstName = "Priscilla", LastName = "Roach", Email = "at.fringilla@risus.com", BirthDate = DateTime.Parse("20/05/1984"), Location = "Lebanon", },
-                new Person { Id = 9, FirstName = "Cade", LastName = "Smith", Email = "auctor.velit.eget@egetvolutpat.edu", BirthDate = DateTime.Parse("19/03/1978"), Location = "New Zealand", },
-                new Person { Id = 10, FirstName = "James", LastName = "Frank", Email = "purus.Nullam@iderat.co.uk", BirthDate = DateTime.Parse("01/07/1954"), Location = "Norfolk Island", },
+                new Person { Id = 1, FirstName = "Odysseus", LastName = "Kirkland", Email = "fermentum@Proinvelnisl.net", BirthDate = DateTime.Parse("06/06/2000", CultureInfo.CurrentCulture), Location = "Eritrea", },
+                new Person { Id = 2, FirstName = "Jocelyn", LastName = "Mccall", Email = "Nullam.lobortis@Fuscefermentum.ca", BirthDate = DateTime.Parse("09/09/1949", CultureInfo.CurrentCulture), Location = "Bolivia", },
+                new Person { Id = 3, FirstName = "Lael", LastName = "Trujillo", Email = "enim.Suspendisse.aliquet@nec.com", BirthDate = DateTime.Parse("09/09/1991", CultureInfo.CurrentCulture), Location = "Sri Lanka", },
+                new Person { Id = 4, FirstName = "Chelsea", LastName = "Mcgee", Email = "magna.et@dolornonummyac.co.uk", BirthDate = DateTime.Parse("07/07/1960", CultureInfo.CurrentCulture), Location = "Hungary", },
+                new Person { Id = 5, FirstName = "Connor", LastName = "Pope", Email = "In.tincidunt@eu.com", BirthDate = DateTime.Parse("07/07/1987", CultureInfo.CurrentCulture), Location = "Albania", },
+                new Person { Id = 6, FirstName = "Dustin", LastName = "Arnold", Email = "ante.Nunc@Pellentesquetincidunttempus.com", BirthDate = DateTime.Parse("04/04/1946", CultureInfo.CurrentCulture), Location = "Lithuania", },
+                new Person { Id = 7, FirstName = "Tatum", LastName = "Dale", Email = "turpis.egestas.Aliquam@atauctor.edu", BirthDate = DateTime.Parse("05/05/1981", CultureInfo.CurrentCulture), Location = "South Africa", },
+                new Person { Id = 8, FirstName = "Priscilla", LastName = "Roach", Email = "at.fringilla@risus.com", BirthDate = DateTime.Parse("05/05/1984", CultureInfo.CurrentCulture), Location = "Lebanon", },
+                new Person { Id = 9, FirstName = "Cade", LastName = "Smith", Email = "auctor.velit.eget@egetvolutpat.edu", BirthDate = DateTime.Parse("03/03/1978", CultureInfo.CurrentCulture), Location = "New Zealand", },
+                new Person { Id = 10, FirstName = "James", LastName = "Frank", Email = "purus.Nullam@iderat.co.uk", BirthDate = DateTime.Parse("07/07/1954", CultureInfo.CurrentCulture), Location = "Norfolk Island", },
             };
         }
 
