@@ -23,6 +23,13 @@ namespace System.Web.Mvc
         classes,
 
         /// <summary>
+        /// The class name of the td elements which are sorted.
+        /// </summary>
+        /// <value>string</value>
+        [NameField(Name = "data-sort-class")]
+        sortClass,
+
+        /// <summary>
         /// The height of table.
         /// </summary>
         /// <value>int</value>
@@ -65,6 +72,13 @@ namespace System.Web.Mvc
         sortOrder_desc,
 
         /// <summary>
+        /// True to get a stable sorting. We will add _position property to the row.
+        /// </summary>
+        /// <value>bool</value>
+        [ValueField(Name = "data-sort-stable", Value = "false")]
+        sortStable,
+
+        /// <summary>
         /// Defines icon set name.
         /// </summary>
         /// <value>string = 'glyphicon' (default) or 'fa' for FontAwesome</value>
@@ -92,11 +106,25 @@ namespace System.Web.Mvc
         columns,
 
         /// <summary>
+        /// The data to be loaded.
+        /// </summary>
+        /// <value>string[]</value>
+        [NameField(Name = "")]
+        data,
+
+        /// <summary>
         /// The method type to request remote data (default = get).
         /// </summary>
         /// <value>string</value>
         [NameField(Name = "data-method")]
         method,
+
+        /// <summary>
+        /// Key in incoming json containing rows data list.
+        /// </summary>
+        /// <value>string</value>
+        [ValueField(Name = "data-data-field", Value = "rows")]
+        dataField,
 
         /// <summary>
         /// A URL to request data from remote site.
@@ -135,6 +163,13 @@ namespace System.Web.Mvc
         ajaxOptions,
 
         /// <summary>
+        /// A method to replace ajax call. Should implement the same API as jQuery ajax method.
+        /// </summary>
+        /// <value>string (function)</value>
+        [NameField(Name = "data-ajax")]
+        ajax,
+
+        /// <summary>
         /// When request remote data, sending additional parameters by format the queryParams,
         /// the parameters object contains: pageSize, pageNumber, searchText, sortName, sortOrder.
         /// Return false to stop request (default = function(params) { return params; }).
@@ -166,6 +201,21 @@ namespace System.Web.Mvc
         pagination,
 
         /// <summary>
+        /// True to enable pagination continuous loop mode (default = true).
+        /// </summary>
+        /// <value>bool</value>
+        [NameField(Name = "data-pagination-loop")]
+        paginationLoop,
+
+        /// <summary>
+        /// True to show only the quantity of the data that is showing in the table. 
+        /// It needs the pagination table options is set to true (default = false).
+        /// </summary>
+        /// <value>bool</value>
+        [NameField(Name = "data-only-info-pagination")]
+        onlyInfoPagination,
+
+        /// <summary>
         /// Defines the side pagination of table, can only be "client" or "server" (default = client).
         /// </summary>
         /// <value>string</value>
@@ -177,7 +227,7 @@ namespace System.Web.Mvc
         /// </summary>
         /// <value>int</value>
         [NameField(Name = "data-page-number")]
-        pageNumber, 
+        pageNumber,
 
         /// <summary>
         /// When set pagination property, initialize the page size (default = 10).
@@ -208,6 +258,13 @@ namespace System.Web.Mvc
         smartDisplay,
 
         /// <summary>
+        /// Escapes a string for insertion into HTML (default = false)
+        /// </summary>
+        /// <value>bool</value>
+        [NameField(Name = "data-escape")]
+        escape,
+
+        /// <summary>
         /// Enable the search input (default = false).
         /// </summary>
         /// <value>bool</value>
@@ -223,11 +280,46 @@ namespace System.Web.Mvc
         searchTimeOut,
 
         /// <summary>
-        /// False to hide the table header (default = true)
+        /// The search method will be executed until the Enter key is pressed (default = false).
+        /// </summary>
+        /// <value>bool</value>
+        [NameField(Name = "data-search-on-enter-key")]
+        searchOnEnterKey,
+
+        /// <summary>
+        /// Enable the strict search (default = false).
+        /// </summary>
+        /// <value>bool</value>
+        [NameField(Name = "data-strict-search")]
+        strictSearch,
+
+        /// <summary>
+        /// When set search property, initialize the search text (default = "").
+        /// </summary>
+        /// <value>string</value>
+        [NameField(Name = "data-search-text")]
+        searchText,
+
+        /// <summary>
+        /// True to trim spaces in search field (default = true).
+        /// </summary>
+        /// <value>bool</value>
+        [NameField(Name = "data-trim-on-search")]
+        trimOnSearch,
+
+        /// <summary>
+        /// False to hide the table header (default = true).
         /// </summary>
         /// <value>bool</value>
         [NameField(Name = "data-show-header")]
         showHeader,
+
+        /// <summary>
+        /// True to show the summary footer row (default = false).
+        /// </summary>
+        /// <value>bool</value>
+        [NameField(Name = "data-show-footer")]
+        showFooter,
 
         /// <summary>
         /// True to show the columns drop down list (default = false).
@@ -265,11 +357,35 @@ namespace System.Web.Mvc
         idField,
 
         /// <summary>
+        /// Indicate an unique identifier for each row.
+        /// </summary>
+        /// <value>string</value>
+        [NameField(Name = "data-unique-id")]
+        uniqueId,
+
+        /// <summary>
         /// True to show card view table, for example mobile view (default = false).
         /// </summary>
         /// <value>bool</value>
         [NameField(Name = "data-card-view")]
         cardView,
+
+        /// <summary>
+        /// True to show detail view table (default = false).
+        /// </summary>
+        /// <value>bool</value>
+        [NameField(Name = "data-detail-view")]
+        detailView,
+
+        /// <summary>
+        /// Format your detail view when detailView is set to true. 
+        /// Return a String and it will be appended into the detail view cell, 
+        /// optionally render the element directly using the third parameter which is a 
+        /// jQuery element of the target cell.
+        /// </summary>
+        /// <value>string (function)</value>
+        [NameField(Name = "data-detail-formatter")]
+        detailFormatter,
 
         /// <summary>
         /// Indicate how to align the search input (default = right).
@@ -306,6 +422,42 @@ namespace System.Web.Mvc
         /// <value>bool</value>
         [ValueField(Name = "data-toolbar-align", Value = "right")]
         toolbarAlign_right,
+
+        /// <summary>
+        /// Indicate how to align the pagination. 'top', 'bottom', 
+        /// 'both' (put the pagination on top and bottom) can be used.
+        /// </summary>
+        /// <value>string</value>
+        [ValueField(Name = "data-pagination-v-align", Value = "bottom")]
+        paginationVAlign,
+
+        /// <summary>
+        /// Indicate how to align the pagination. 'left', 'right' can be used.
+        /// </summary>
+        /// <value>string</value>
+        [ValueField(Name = "data-pagination-h-align", Value = "right")]
+        paginationHAlign,
+
+        /// <summary>
+        /// Indicate how to align the pagination detail. 'left', 'right' can be used.
+        /// </summary>
+        /// <value>string</value>
+        [ValueField(Name = "data-pagination-detail-h-align", Value = "left")]
+        paginationDetailHAlign,
+
+        /// <summary>
+        /// Indicate the icon or text to be shown in the pagination detail, the previous button.
+        /// </summary>
+        /// <value>string</value>
+        [ValueField(Name = "data-pagination-pre-text", Value = "‹")]
+        paginationPreText,
+
+        /// <summary>
+        /// Indicate the icon or text to be shown in the pagination detail, the next button.
+        /// </summary>
+        /// <value>string</value>
+        [ValueField(Name = "data-pagination-next-text", Value = "›")]
+        paginationNextText,
 
         /// <summary>
         /// True to select checkbox or radiobox when click rows (default = false).
@@ -350,12 +502,43 @@ namespace System.Web.Mvc
         sortable,
 
         /// <summary>
+        /// Set false to sort the data silently. 
+        /// This option works when the sidePagination option is set to server (default = true).
+        /// </summary>
+        /// <value>bool</value>
+        [NameField(Name = "data-silent-sort")]
+        silentSort,
+
+        /// <summary>
         /// The row style formatter function, take two parameters: row: the row record data. 
         /// index: the row index. Support classes or css.
         /// </summary>
         /// <value>string (function)</value>
         [NameField(Name = "data-row-style")]
         rowStyle,
+
+        /// <summary>
+        /// The footer style formatter function, takes two parameters: 
+        /// row: the row record data.
+        /// index: the row index.
+        /// </summary>
+        /// <value>string (function)</value>
+        [NameField(Name = "data-footer-style")]
+        footerStyle,
+
+        /// <summary>
+        /// The custom sort function is executed instead of built-in sort function, takes two parameters: 
+        /// sortName: the sort name.
+        /// sortOrder: the sort order.
+        /// Example:
+        /// function customSort(sortName, sortOrder) {
+        ///    //Sort logic here.
+        ///    //You must use `this.data` array in order to sort the data. NO use `this.options.data`.
+        /// }
+        /// </summary>
+        /// <value>string (function)</value>
+        [NameField(Name = "data-custom-sort")]
+        customSort,
 
         /// <summary>
         /// Support all custom attributes.
@@ -374,6 +557,13 @@ namespace System.Web.Mvc
         iconSize,
 
         /// <summary>
+        /// Defines the Bootstrap class (added after 'btn-') of table buttons: EX: 'primary', 'danger', 'warning'.
+        /// </summary>
+        /// <value>string</value>
+        [ValueField(Name = "data-buttons-class", Value = "default")]
+        buttonsClass,
+
+        /// <summary>
         /// Toolbar button to show or hide the pagination.
         /// </summary>
         /// <remarks>1.6.0</remarks>
@@ -385,6 +575,19 @@ namespace System.Web.Mvc
         /// </summary>
         [NameField(Name = "data-show-loading")]
         showLoading,
+
+        /// <summary>
+        /// Sets the locale to use (i.e. 'fr-CA'). Locale files must be pre-loaded. 
+        /// Allows for fallback locales, if loaded, in the following order:
+        /// - First tries for the locale as specified,
+        /// - Then tries the locale with '_' translated to '-' and the region code upper cased,
+        /// - Then tries the the short locale code (i.e. 'fr' instead of 'fr-CA'),
+        /// - And finally will use the last locale file loaded (or the default locale if no locales loaded).
+        /// If left undfined or an empty string, uses the last locale loaded (or 'en-US' if no locale files loaded).
+        /// </summary>
+        /// <value>string</value>
+        [NameField(Name = "data-locale")]
+        locale,
     }
 
     ///<summary>

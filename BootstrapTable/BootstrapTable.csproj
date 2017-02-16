@@ -93,6 +93,7 @@
     <Compile Include="Support\Extensions.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Support\GenericTypeExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
